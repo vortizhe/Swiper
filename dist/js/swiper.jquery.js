@@ -10,7 +10,7 @@
  * 
  * Licensed under MIT
  * 
- * Released on: February 7, 2016
+ * Released on: February 15, 2016
  */
 (function () {
     'use strict';
@@ -2885,6 +2885,7 @@
                 s.scrollbar.drag.transition(duration);
             }
         };
+        
 
         /*=========================
           Controller

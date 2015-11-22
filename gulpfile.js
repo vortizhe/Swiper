@@ -62,6 +62,31 @@
                 'src/js/wrap-end.js',
                 'src/js/amd.js'
             ],
+            ie9Files: [
+                'src/js/classList.js',
+                'src/js/wrap-start.js',
+                'src/js/swiper-intro.js',
+                'src/js/core.js',
+                'src/js/effects.js',
+                'src/js/lazy-load.js',
+                'src/js/scrollbar.js',
+                'src/js/controller.js',
+                'src/js/hashnav.js',
+                'src/js/keyboard.js',
+                'src/js/mousewheel.js',
+                'src/js/parallax.js',
+                'src/js/plugins.js',
+                'src/js/emitter.js',
+                'src/js/a11y.js',
+                'src/js/init.js',
+                'src/js/swiper-outro.js',
+                'src/js/swiper-proto.js',
+                'src/js/dom.js',
+                'src/js/get-dom-lib.js',
+                'src/js/dom-plugins.js',
+                'src/js/wrap-end.js',
+                'src/js/amd.js'
+            ],
             jQueryFiles : [
                 'src/js/wrap-start.js',
                 'src/js/swiper-intro.js',
@@ -177,8 +202,17 @@
             .pipe(jshint.reporter(stylish))
             .pipe(sourcemaps.write('./maps/'))
             .pipe(gulp.dest(paths.build.scripts));
-
-            
+        gulp.src(swiper.ie9Files)
+            .pipe(tap(function (file, t){
+                addJSIndent (file, t);
+            }))
+            .pipe(concat(swiper.filename + '.ie9.js'))
+            .pipe(header(swiper.banner, { pkg : swiper.pkg, date: swiper.date } ))
+            .pipe(gulp.dest(paths.build.scripts))
+            .pipe(jshint())
+            .pipe(jshint.reporter(stylish))
+            .pipe(sourcemaps.write('./maps/'))
+            .pipe(gulp.dest(paths.build.scripts));
         gulp.src(swiper.jQueryFiles)
             .pipe(tap(function (file, t){
                 addJSIndent (file, t);
