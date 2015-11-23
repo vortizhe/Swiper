@@ -10,7 +10,7 @@
  * 
  * Licensed under MIT
  * 
- * Released on: February 15, 2016
+ * Released on: February 26, 2016
  */
 (function () {
     'use strict';
@@ -998,22 +998,22 @@
             if (!s.params.loop) {
                 if (s.params.prevButton && s.prevButton && s.prevButton.length > 0) {
                     if (s.isBeginning) {
-                        s.prevButton.addClass(s.params.buttonDisabledClass);
-                        if (s.params.a11y && s.a11y) s.a11y.disable(s.prevButton);
+                        s.container.find(s.params.prevButton).addClass(s.params.buttonDisabledClass);
+                        if (s.params.a11y && s.a11y) s.a11y.disable(s.container.find(s.params.prevButton));
                     }
                     else {
-                        s.prevButton.removeClass(s.params.buttonDisabledClass);
-                        if (s.params.a11y && s.a11y) s.a11y.enable(s.prevButton);
+                        s.container.find(s.params.prevButton).removeClass(s.params.buttonDisabledClass);
+                        if (s.params.a11y && s.a11y) s.a11y.enable(s.container.find(s.params.prevButton));
                     }
                 }
                 if (s.params.nextButton && s.nextButton && s.nextButton.length > 0) {
                     if (s.isEnd) {
-                        s.nextButton.addClass(s.params.buttonDisabledClass);
-                        if (s.params.a11y && s.a11y) s.a11y.disable(s.nextButton);
+                        s.container.find(s.params.nextButton).addClass(s.params.buttonDisabledClass);
+                        if (s.params.a11y && s.a11y) s.a11y.disable(s.container.find(s.params.nextButton));
                     }
                     else {
-                        s.nextButton.removeClass(s.params.buttonDisabledClass);
-                        if (s.params.a11y && s.a11y) s.a11y.enable(s.nextButton);
+                        s.container.find(s.params.nextButton).removeClass(s.params.buttonDisabledClass);
+                        if (s.params.a11y && s.a11y) s.a11y.enable(s.container.find(s.params.nextButton));
                     }
                 }
             }
@@ -1215,17 +1215,17 @@
             window[action]('resize', s.onResize);
         
             // Next, Prev, Index
-            if (s.params.nextButton && s.nextButton && s.nextButton.length > 0) {
-                s.nextButton[actionDom]('click', s.onClickNext);
-                if (s.params.a11y && s.a11y) s.nextButton[actionDom]('keydown', s.a11y.onEnterKey);
+            if (s.params.nextButton) {
+                s.container.find(s.params.nextButton)[actionDom]('click', s.onClickNext);
+                if (s.params.a11y && s.a11y) s.container.find(s.params.nextButton)[actionDom]('keydown', s.a11y.onEnterKey);
             }
-            if (s.params.prevButton && s.prevButton && s.prevButton.length > 0) {
-                s.prevButton[actionDom]('click', s.onClickPrev);
-                if (s.params.a11y && s.a11y) s.prevButton[actionDom]('keydown', s.a11y.onEnterKey);
+            if (s.params.prevButton) {
+                s.container.find(s.params.prevButton)[actionDom]('click', s.onClickPrev);
+                if (s.params.a11y && s.a11y) s.container.find(s.params.prevButton)[actionDom]('keydown', s.a11y.onEnterKey);
             }
             if (s.params.pagination && s.params.paginationClickable) {
-                s.paginationContainer[actionDom]('click', '.' + s.params.bulletClass, s.onClickIndex);
-                if (s.params.a11y && s.a11y) s.paginationContainer[actionDom]('keydown', '.' + s.params.bulletClass, s.a11y.onEnterKey);
+                s.container.find(s.paginationContainer)[actionDom]('click', '.' + s.params.bulletClass, s.onClickIndex);
+                if (s.params.a11y && s.a11y) s.container.find(s.paginationContainer)[actionDom]('keydown', '.' + s.params.bulletClass, s.a11y.onEnterKey);
             }
         
             // Prevent Links Clicks
@@ -2885,7 +2885,6 @@
                 s.scrollbar.drag.transition(duration);
             }
         };
-        
 
         /*=========================
           Controller

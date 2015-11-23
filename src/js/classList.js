@@ -8,6 +8,7 @@
 if (!('classList' in document.documentElement) && Object.defineProperty && typeof HTMLElement !== 'undefined') {
   Object.defineProperty(HTMLElement.prototype, 'classList', {
     get: function() {
+      'use strict';
       var self = this;
       function update(fn) {
         return function(value) {
