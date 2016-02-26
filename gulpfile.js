@@ -81,7 +81,6 @@
                 'src/js/init.js',
                 'src/js/swiper-outro.js',
                 'src/js/swiper-proto.js',
-                'src/js/dom.js',
                 'src/js/get-dom-lib.js',
                 'src/js/dom-plugins.js',
                 'src/js/wrap-end.js',
@@ -206,11 +205,9 @@
             .pipe(tap(function (file, t){
                 addJSIndent (file, t);
             }))
+            .pipe(sourcemaps.init())
             .pipe(concat(swiper.filename + '.ie9.js'))
             .pipe(header(swiper.banner, { pkg : swiper.pkg, date: swiper.date } ))
-            .pipe(gulp.dest(paths.build.scripts))
-            .pipe(jshint())
-            .pipe(jshint.reporter(stylish))
             .pipe(sourcemaps.write('./maps/'))
             .pipe(gulp.dest(paths.build.scripts));
         gulp.src(swiper.jQueryFiles)
@@ -291,6 +288,17 @@
             .pipe(header(swiper.banner, { pkg : swiper.pkg, date: swiper.date } ))
             .pipe(rename(function(path) {
                 path.basename = swiper.filename + '.jquery.min';
+            }))
+            .pipe(sourcemaps.write('./maps'))
+            .pipe(gulp.dest(paths.dist.scripts));
+
+        gulp.src([paths.build.scripts + swiper.filename + '.ie9.js'])
+            .pipe(gulp.dest(paths.dist.scripts))
+            .pipe(sourcemaps.init())
+            .pipe(uglify())
+            .pipe(header(swiper.banner, { pkg : swiper.pkg, date: swiper.date } ))
+            .pipe(rename(function(path) {
+                path.basename = swiper.filename + '.ie9.min';
             }))
             .pipe(sourcemaps.write('./maps'))
             .pipe(gulp.dest(paths.dist.scripts));
