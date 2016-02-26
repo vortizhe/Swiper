@@ -1,6 +1,8 @@
-[![Build Status](https://travis-ci.org/nolimits4web/Swiper.svg?branch=master)](https://travis-ci.org/nolimits4web/Swiper)
-[![devDependency Status](https://david-dm.org/nolimits4web/swiper/dev-status.svg)](https://david-dm.org/nolimits4web/swiper#info=devDependencies)
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=nolimits4web&url=https://github.com/nolimits4web/swiper/&title=Framework7&language=JavaScript&tags=github&category=software)
+## ALERT! Swiper fork with IE9 support.
+
+Since version 3 Swiper drop IE9 support, so I take swiper.jquery.js version and add a simple `classList` polyfill to get miniminal IE9 support.
+
+**Use `dist/swiper.ie9.js` or minified version**.
 
 Swiper
 ==========
